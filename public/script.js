@@ -14,3 +14,19 @@ function showNextQuestion() {
 }
 
 showNextQuestion();
+
+function sendAnswer(answerIndex) {
+  fetch(`/answer/${answerIndex}`, { method: "POST" })
+    .then(data => data.json())
+    .then(data => console.log(data));
+}
+
+const buttons = document.querySelectorAll("button");
+
+for (const button of buttons) {
+  button.addEventListener("click", function() {
+    const answerIndex = this.dataset.answer;
+    // console.log(typeof answerIndex);
+    sendAnswer(answerIndex);
+  });
+}
